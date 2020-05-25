@@ -35,7 +35,7 @@ public class CsvData
            "id=" + id +
            ", secondId=" + secondId +
            ", name='" + name + '\'' +
-           ", date=" + date +
+           ", date=" + (date != null ? date.getTime() : null )+
            '}';
   }
 }

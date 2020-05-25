@@ -27,7 +27,7 @@ class JulieCsvProcessorTest
     JulieLineSeparator separator = JulieLineSeparator.defaultSeparator;
     CsvBeanValidator<CsvData> validator = new CsvBeanValidator<CsvData>();
 
-    JulieCsvProcessor<CsvData> julieCsvParser = new JulieCsvProcessor<CsvData>(deserializer, validator, separator, null, null);
+    JulieCsvProcessor<CsvData> julieCsvParser = new JulieCsvProcessor<>(deserializer, validator, separator, null, null);
 
     julieCsvParser.process(getInputStreamReader(), 0, CsvData.class);
   }

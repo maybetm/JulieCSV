@@ -2,12 +2,10 @@ package com.maybetm.julie.csv.deserializer;
 
 import com.maybetm.julie.csv.deserializer.annotations.JulieCsvDeserializer;
 import com.maybetm.julie.csv.deserializer.api.JulieCsvBeanDeserializer;
-import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.beanutils.ConvertUtils;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 
 /**
  * @author zebzeev-sv
@@ -40,9 +38,9 @@ public class CsvBeanDeserializer<T> implements JulieCsvBeanDeserializer<T>
     for (int cell = 0; cell < line.length; cell++) {
       JulieCsvDeserializer deserializer = fields[cell].getAnnotation(JulieCsvDeserializer.class);
       if (deserializer != null) {
-        data.getClass().getFields()[cell].set(data, deserializer.using().newInstance().deserialize(line[cell], data.getClass()));
+        fields[cell].set(data, deserializer.using().newInstance().deserialize(line[cell], data.getClass()));
       } else {
-        data.getClass().getFields()[cell].set(data, ConvertUtils.convert(line[cell], fields[cell].getType()));
+        fields[cell].set(data, ConvertUtils.convert(line[cell], fields[cell].getType()));
       }
     }
   }
