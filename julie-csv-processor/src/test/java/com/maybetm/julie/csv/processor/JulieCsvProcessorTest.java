@@ -18,7 +18,7 @@ import java.nio.charset.StandardCharsets;
 class JulieCsvProcessorTest
 {
 
-  private static final String pathFile =  ClassLoader.getSystemResource("6639_01122019_utf8.csv").getPath();
+  private static final String pathFile =  ClassLoader.getSystemResource("test.csv").getPath();
 
   @Test
   void parse() throws Throwable

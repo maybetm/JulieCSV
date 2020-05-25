@@ -10,13 +10,4 @@
   <modelVersion>4.0.0</modelVersion>
 
   <artifactId>julie-csv-deserializer</artifactId>
-
-  <dependencies>
-    <dependency>
-      <groupId>com.fasterxml.jackson.dataformat</groupId>
-      <artifactId>jackson-dataformat-csv</artifactId>
-      <version>2.11.0</version>
-    </dependency>
-  </dependencies>
-
 </project>

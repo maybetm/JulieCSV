@@ -1,9 +1,13 @@
 package com.maybetm.julie.csv.deserializer;
 
+import com.maybetm.julie.csv.deserializer.annotations.JulieCsvDeserializer;
 import com.maybetm.julie.csv.deserializer.api.JulieCsvBeanDeserializer;
+import org.apache.commons.beanutils.BeanUtils;
+import org.apache.commons.beanutils.ConvertUtils;
 
 import java.lang.reflect.Field;
-import java.util.Arrays;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 
 /**
  * @author zebzeev-sv
@@ -13,16 +17,33 @@ public class CsvBeanDeserializer<T> implements JulieCsvBeanDeserializer<T>
 {
 
   @Override
-  public T deserialize(String[] line, Class<? extends T> beanCsv)
+  public T deserialize(String[] line, Class<? extends T> beanCsv) throws IllegalAccessException, InstantiationException, NoSuchMethodException, InvocationTargetException
   {
-    try {
-      Field field = beanCsv.getField("id");
 
-    } catch (NoSuchFieldException e) {
-      e.printStackTrace();
+    T data = createObject(beanCsv);
+
+    configurer(data, line);
+
+    System.out.println(data.toString());
+    return data;
+  }
+
+  private T createObject(Class<? extends T> beanCsv) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException
+  {
+    return beanCsv.getDeclaredConstructor().newInstance();
+  }
+
+  private void configurer(T data, String[] line) throws IllegalAccessException, InstantiationException
+  {
+    Field[] fields = data.getClass().getFields();
+
+    for (int cell = 0; cell < line.length; cell++) {
+      JulieCsvDeserializer deserializer = fields[cell].getAnnotation(JulieCsvDeserializer.class);
+      if (deserializer != null) {
+        data.getClass().getFields()[cell].set(data, deserializer.using().newInstance().deserialize(line[cell], data.getClass()));
+      } else {
+        data.getClass().getFields()[cell].set(data, ConvertUtils.convert(line[cell], fields[cell].getType()));
+      }
     }
-
-    System.out.println(Arrays.toString(line));
-    return null;
   }
 }

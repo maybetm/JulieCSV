@@ -47,6 +47,9 @@ public class JulieCsvProcessor<T>
           continue;
         }
 
+        if(line.isEmpty())
+          continue;
+
         String[] lineByColumns = lineSeparator.split(line);
         T data = deserializer.deserialize(lineByColumns, beanCsv);
 
