@@ -2,8 +2,6 @@ package com.maybetm.julie.csv.processor;
 
 import com.maybetm.julie.csv.deserializer.annotations.JulieCsvColumn;
 import com.maybetm.julie.csv.deserializer.annotations.JulieCsvDeserializer;
-import com.maybetm.julie.csv.deserializer.impl.CalendarDes;
-import com.maybetm.julie.csv.deserializer.impl.JulieDeserializerImpl;
 
 import java.util.Calendar;
 

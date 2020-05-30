@@ -1,4 +1,4 @@
-package com.maybetm.julie.csv.deserializer.impl;
+package com.maybetm.julie.csv.processor;
 
 import com.maybetm.julie.csv.deserializer.api.JulieDeserializer;
 
@@ -8,9 +8,8 @@ import com.maybetm.julie.csv.deserializer.api.JulieDeserializer;
  */
 public class JulieDeserializerImpl implements JulieDeserializer<Long, Object>
 {
-
   @Override
-  public Long deserialize(String data, Class<? extends Object> beanCsv)
+  public Long deserialize(String data, Class<Object> beanCsv)
   {
     return Long.valueOf(data);
   }

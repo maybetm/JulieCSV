@@ -2,6 +2,7 @@ package com.maybetm.julie.csv.deserializer;
 
 import com.maybetm.julie.csv.deserializer.annotations.JulieCsvDeserializer;
 import com.maybetm.julie.csv.deserializer.api.JulieCsvBeanDeserializer;
+import com.maybetm.julie.csv.deserializer.api.JulieDeserializer;
 import org.apache.commons.beanutils.ConvertUtils;
 
 import java.lang.reflect.Field;
@@ -31,6 +32,7 @@ public class CsvBeanDeserializer<T> implements JulieCsvBeanDeserializer<T>
     return beanCsv.getDeclaredConstructor().newInstance();
   }
 
+  // todo тут можно получить исключение с колонкой, наименованием поля
   private void configurer(T data, String[] line) throws IllegalAccessException, InstantiationException
   {
     Field[] fields = data.getClass().getFields();
@@ -38,7 +40,8 @@ public class CsvBeanDeserializer<T> implements JulieCsvBeanDeserializer<T>
     for (int cell = 0; cell < line.length; cell++) {
       JulieCsvDeserializer deserializer = fields[cell].getAnnotation(JulieCsvDeserializer.class);
       if (deserializer != null) {
-        fields[cell].set(data, deserializer.using().newInstance().deserialize(line[cell], data.getClass()));
+        JulieDeserializer deserializers = deserializer.using().newInstance();
+        fields[cell].set(data, deserializers.deserialize(line[cell], data.getClass()));
       } else {
         fields[cell].set(data, ConvertUtils.convert(line[cell], fields[cell].getType()));
       }

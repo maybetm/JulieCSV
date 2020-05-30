@@ -1,4 +1,4 @@
-package com.maybetm.julie.csv.deserializer.impl;
+package com.maybetm.julie.csv.processor;
 
 import com.maybetm.julie.csv.deserializer.api.JulieDeserializer;
 
@@ -14,7 +14,7 @@ public class CalendarDes implements JulieDeserializer<Calendar, Object>
 {
 
   @Override
-  public Calendar deserialize(String data, Class<? extends Object> beanCsv)
+  public Calendar deserialize(String data, Class<Object> beanCsv)
   {
     Calendar cal = Calendar.getInstance();
     SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy hh:mm:ss");
