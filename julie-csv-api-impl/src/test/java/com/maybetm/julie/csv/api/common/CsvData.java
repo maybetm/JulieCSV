@@ -21,4 +21,15 @@ public class CsvData
 
   @JulieCsvDeserializer(using = JulieImplCalendarDeserialize.class)
   public Calendar date;
+
+  @Override
+  public String toString()
+  {
+    return "CsvData{" +
+           "id=" + id +
+           ", secondId=" + secondId +
+           ", name='" + name + '\'' +
+           ", date=" + (date != null ? date.getTime() : null)+
+           '}';
+  }
 }
