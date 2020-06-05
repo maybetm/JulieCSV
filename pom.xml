@@ -14,38 +14,28 @@
     <maven.compiler.source>${java.version}</maven.compiler.source>
     <maven.compiler.target>${java.version}</maven.compiler.target>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
     <junit.version>5.7.0-M1</junit.version>
+    <commons.lang3>3.10</commons.lang3>
+    <commons.beanutils>1.9.4</commons.beanutils>
   </properties>
 
   <modules>
-    <module>julie-csv-processor</module>
-    <module>julie-csv-validator</module>
-    <module>julie-csv-deserializer</module>
+    <module>julie-csv-api</module>
+    <module>julie-csv-api-impl</module>
   </modules>
 
   <dependencyManagement>
     <dependencies>
       <dependency>
         <groupId>com.maybetm</groupId>
-        <artifactId>julie-csv-processor</artifactId>
+        <artifactId>julie-csv-api</artifactId>
         <version>${project.version}</version>
       </dependency>
 
       <dependency>
         <groupId>com.maybetm</groupId>
-        <artifactId>julie-csv-processor-api</artifactId>
-        <version>${project.version}</version>
-      </dependency>
-
-      <dependency>
-        <groupId>com.maybetm</groupId>
-        <artifactId>julie-csv-validator</artifactId>
-        <version>${project.version}</version>
-      </dependency>
-
-      <dependency>
-        <groupId>com.maybetm</groupId>
-        <artifactId>julie-csv-deserializer</artifactId>
+        <artifactId>julie-csv-api-impl</artifactId>
         <version>${project.version}</version>
       </dependency>
     </dependencies>
@@ -55,7 +45,8 @@
     <dependency>
       <groupId>org.apache.commons</groupId>
       <artifactId>commons-lang3</artifactId>
-      <version>3.10</version>
+      <version>${commons.lang3}</version>
+      <scope>provided</scope>
     </dependency>
 
     <dependency>
