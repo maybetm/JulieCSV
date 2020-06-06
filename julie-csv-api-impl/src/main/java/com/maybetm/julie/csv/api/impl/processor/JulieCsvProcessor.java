@@ -35,7 +35,7 @@ public class JulieCsvProcessor<T>
    * Start csv file processing
    *
    * @param reader - file input stream
-   * @param lineStartProcessing - number of start line processing
+   * @param lineStartProcessing - start processing from line
    * @param beanCsv - class name of deserialize
    * @throws Throwable - fixme add normal exception
    *

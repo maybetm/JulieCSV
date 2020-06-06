@@ -12,7 +12,7 @@ import java.util.Set;
 public interface JulieFieldValidator<T>
 {
 
-  Set<ConstraintViolation<T>> validate(T object, String propertyName, Class<?>... groups) throws Exception;
+  Set<ConstraintViolation<T>> validate(T object, String propertyName, Class<?>... groups);
 
   static <T> JulieFieldValidator<T> defaultFieldValidator()
   {

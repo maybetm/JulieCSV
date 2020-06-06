@@ -21,10 +21,22 @@ class JulieFieldValidatorTest
     Assertions.assertEquals(1, fieldValidation.validate(testValidateClass, "name").size());
   }
 
+  @Test
+  void validate1()
+  {
+    CsvData testValidateClass = new CsvData("1", null);
+    JulieFieldValidator<CsvData> fieldValidation = JulieFieldValidator.defaultFieldValidator();
+
+    fieldValidation
+      .validate(testValidateClass, "name")
+      .forEach(csvDataConstraintViolation -> System.out.println(csvDataConstraintViolation.getMessage()));
+
+  }
+
   private static class CsvData
   {
 
-    @Size (min = 2, message = "Поле \"name\" не может содержать данное значение")
+    @Size (min = 2, message = "Поле ${validatedValue} не может содержать данное значение")
     String name;
     @NotNull
     Integer i1;
