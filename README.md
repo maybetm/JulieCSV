@@ -1,2 +1,2 @@
-# JulieCSV
+# JulieCSV - dropped
 Шаблонный проект для обработки данных в формате csv
